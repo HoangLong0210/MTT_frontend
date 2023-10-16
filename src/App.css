@@ -644,13 +644,10 @@ p {
 
   .card-post-1 {
     flex-direction: row;
-    /* width: 50%; */
-    /* background-color: #42BCFE; */
   }
 
   .card-post-2 {
     flex-direction: row;
-    /* background-color: #42BCFE; */
   }
 
   .vote-mark {
@@ -727,10 +724,10 @@ p {
 }
 
 .landing-register {
-	position: relative;
-	background: url("./assets/lading3.jpg") no-repeat center center/cover;
-	height: 100%;
-  }
+  position: relative;
+  background: url("./assets/lading3.jpg") no-repeat center center/cover;
+  height: 100%;
+}
 
 .dark-overlay {
   background-color: rgba(0, 0, 0, 0.5);
@@ -1647,4 +1644,22 @@ p {
   width: 150px;
   height: 50px;
   font-size: 24px;
+}
+
+.btn-card-post {
+  color: #000;
+  background-image: linear-gradient(to right bottom, #2ebac1, #a4d96c);
+  border: none;
+  border-radius: inherit;
+  width: inherit;
+  height: inherit;
+  font-size: inherit;
+  border: 6px;
+  border-color: linear-gradient(to right bottom, #2ebac1, #a4d96c);
+}
+
+.btn-info {
+  color: #000;
+  background-image: linear-gradient(to right bottom, #2ebac1, #a4d96c);
+  border-color: linear-gradient(to right bottom, #2ebac1, #a4d96c);
 }
