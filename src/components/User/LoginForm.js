@@ -42,62 +42,6 @@ const LoginForm = () => {
 
   const { account_name, password } = loginForm;
   return (
-    // <div className="wapper">
-    //     <div className="content">
-    //         <Link to="/">
-    //             {" "}
-    //             <header className="img-logo"></header>
-    //         </Link>
-    //         <form onSubmit={onSubmitLogin}>
-    //             <div className="login-content">
-    //                 <div className="bia-login" />
-    //                 <div className="box-login open">
-    //                     <h1>Đăng nhập</h1>
-    //                     <div style={{ marginTop: "36px", width: "70%" }}>
-    //                         <label className="modal-lable" style={{ marginRight: "10px" }}>
-    //                             <i className="fas fa-user-tie"></i>
-    //                         </label>
-    //                         <input
-    //                             type="text"
-    //                             className="modal-input"
-    //                             id="input-name-login1"
-    //                             placeholder="Tên đăng nhập/Email"
-    //                             name="account_name"
-    //                             value={account_name}
-    //                             onChange={onChangeLogin}
-    //                         />
-    //                     </div>
-    //                     <div style={{ margin: "10px 0px", width: "70%" }}>
-    //                         <label className="modal-lable" style={{ marginRight: "6px" }}>
-    //                             <i className="fas fa-key"></i>
-    //                         </label>
-    //                         <input
-    //                             type="password"
-    //                             className="modal-input"
-    //                             id="input-pass1"
-    //                             placeholder="Mật khẩu"
-    //                             name="password"
-    //                             value={password}
-    //                             onChange={onChangeLogin}
-    //                         />
-    //                     </div>
-    //                     <div className="modal-forgot-pass">
-    //                         <Link to="/forgot/password">
-    //                             Quên mật khẩu?
-    //                         </Link>
-    //                     </div>
-    //                     <button id="login" type="submit">
-    //                         Đăng nhập
-    //                     </button>
-    //                     <div className="dang-ky">
-    //                         Bạn chưa có tài khoản?{" "}
-    //                         <Link to="/register">Đăng ký ngay!</Link>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </form>
-    //     </div>
-    // </div>
     <div className="landing">
       <div className="dark-overlay">
         <div className="landing-container">
@@ -138,7 +82,7 @@ const LoginForm = () => {
           <div>
             <Link
               className="letter"
-                style={{ fontSize: "20px"}}
+              style={{ fontSize: "20px" }}
               to="/forgot/password"
             >
               Quên mật khẩu?
@@ -146,7 +90,11 @@ const LoginForm = () => {
           </div>
           <p>
             Bạn chưa có tài khoản? &nbsp;
-            <Link to="/register" className="letter" style= {{fontSize: "24px"}}>
+            <Link
+              to="/register"
+              className="letter"
+              style={{ fontSize: "24px" }}
+            >
               Đăng ký ngay
             </Link>
             &nbsp;

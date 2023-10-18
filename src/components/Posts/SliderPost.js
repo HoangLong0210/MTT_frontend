@@ -8,17 +8,20 @@ import {
 } from "../../reducers/User/fetchPost";
 import { loadUser } from "../../reducers/User/loginForm";
 import { setShow } from "../../reducers/Comment/comment";
-// import imageSlider1 from '../.././assets/slider-4.jpg'
-// import imageSlider from '../.././assets/b.jpg'
-// import imageSlider3 from '../.././assets/slider-3.jpg'
-// import imageSlider2 from '../.././assets/silder-6.jpg'
-import bannerImg from "../../assets/banner.png"
+import bannerImg from "../../assets/banner.png";
 import imageSlider5 from "../.././assets/slider-5.jfif";
+import { useHistory } from "react-router-dom";
 
 const SliderPost = () => {
   const dispatch = useDispatch();
   const postNewest = useSelector(postNewestSelector);
   const image = [imageSlider5, imageSlider5, imageSlider5, imageSlider5];
+
+  let history = useHistory();
+
+  function handleClick() {
+    history.push("/newest");
+  }
 
   useEffect(() => {
     dispatch(loadUser());
@@ -42,31 +45,6 @@ const SliderPost = () => {
       // const randomColor = color[Math.floor(Math.random() * color.length)]
       // const choose = randomColor
       return (
-        // <div className={`${choose} d-flex slider`} key={index} >
-        //     <img src={imgPosts} alt="imgPosts" />
-        //     <Card
-        //         className={choose}
-        //         style={{ width: "29rem", border: "0" }}
-        //     >
-        //         <Card.Body>
-        //             <Card.Title>{post.post.title}</Card.Title>
-        //             <Card.Text>
-        //                 {post.post.content.length < 200
-        //                     ? post.post.content
-        //                     : post.post.content.substring(0, 200) +
-        //                     " ..."}
-        //             </Card.Text>
-        //             <Button
-        //                 variant="light"
-        //                 as={Link}
-        //                 to={`/p/post/${post.post.id_post}`}
-        //                 onClick={() => dispatch(setShow())}
-        //             >
-        //                 See now
-        //             </Button>
-        //         </Card.Body>
-        //     </Card>
-        // </div>
         <Carousel.Item key={index}>
           <img
             className="d-block"
@@ -112,78 +90,17 @@ const SliderPost = () => {
               <p className="banner-desc">
                 Nơi chia sẻ kiến thức lập trình. Học mọi lúc, mọi nơi
               </p>
-              <Button className="banner-button">
+              <Button className="banner-button" onClick={handleClick}>
                 Get started
               </Button>
             </div>
             <div className="banner-image">
-              <img src={bannerImg} alt="banner" className="img"/>
+              <img src={bannerImg} alt="banner" className="img" />
             </div>
           </div>
         </div>
         <div style={{ margin: "30px 0" }}>
           <Carousel>{sliders()}</Carousel>
-          {/* <Carousel style={{ backgroundColor: 'black' }}>
-                        <Carousel.Item>
-                            <img
-                                className="d-block"
-                                src={image[0]}
-                                alt="First slide"
-                                style={{ width: '100%', height: '450px' }}
-                            />
-                            <Carousel.Caption className="d-table-row">
-                                <h3>Cấu trúc dữ liệu và giải thuật</h3>
-                                <p style={{ textAlign: 'center' }}>Bài viết rất bổ ích đối với, foi voi abi baisf bsafsa busfs buasfhs osj</p>
-                                <Button
-                                    variant="light"
-                                    as={Link}
-                                    // to={`/p/post/${post.post.id_post}`}
-                                    onClick={() => dispatch(setShow())}
-                                >
-                                    See now
-                                </Button>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                                className="d-block"
-                                src={imageSlider2}
-                                alt="Second slide"
-                                style={{ width: '100%', height: '450px' }}
-                            />
-
-                            <Carousel.Caption>
-                                <h3>Second slide label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                                className="d-block"
-                                src={imageSlider3}
-                                alt="Third slide"
-                                style={{ width: '100%', height: '450px' }}
-                            />
-
-                            <Carousel.Caption>
-                                <h3>Third slide label</h3>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                                className="d-block"
-                                src={imageSlider1}
-                                alt="Third slide"
-                                style={{ width: '100%', height: '450px' }}
-                            />
-
-                            <Carousel.Caption>
-                                <h3>Third slide label</h3>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                    </Carousel> */}
         </div>
       </Col>
     </>
