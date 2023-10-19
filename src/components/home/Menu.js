@@ -1,106 +1,21 @@
-import React, { useEffect } from "react"
-import { Col, Image } from "react-bootstrap"
-import { Link } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
-import { loadUser, userSelector } from "../../reducers/User/loginForm"
-import * as types from "../.././contains/types"
-import itNewsIcon from "../.././assets/logo.png"
+import React, { useEffect } from "react";
+import { Col, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { loadUser, userSelector } from "../../reducers/User/loginForm";
+import * as types from "../.././contains/types";
+import itNewsIcon from "../.././assets/logo.png";
 
 const Menu = ({ real_name, id_role }) => {
-  const dispatch = useDispatch()
-  const user = useSelector(userSelector)
+  const dispatch = useDispatch();
+  const user = useSelector(userSelector);
 
   useEffect(() => {
-    dispatch(loadUser())
-  }, [dispatch])
+    dispatch(loadUser());
+  }, [dispatch]);
 
   return (
     <>
-      {/* <Col md={2} className="category">
-                <h2 className="my-4">Danh mục</h2>
-                <ListGroup>
-                    <ListGroup.Item action as={Link} to="/">
-                        <i className="fas fa-home"> Trang chủ</i>
-                    </ListGroup.Item>
-
-                    {localStorage[types.LOCAL_STORAGE_TOKEN_NAME] ? (
-                        <>
-                            <ListGroup.Item
-                                action
-                                as={Link}
-                                to={`/u/${user.real_name}/clips/posts`}
-                            >
-                                <i className="fas fa-bookmark"> Bookmark</i>
-                            </ListGroup.Item>
-                            <ListGroup.Item
-                                action
-                                as={Link}
-                                to={`/u/${user.real_name}/followers`}
-                            >
-                                <i className="fas fa-clipboard-list">
-                                    {" "}
-                                    Người theo dõi
-                                </i>
-                            </ListGroup.Item>s
-                            <ListGroup.Item
-                                action
-                                as={Link}
-                                to={{
-                                    pathname: `/u/${user.real_name}/following`,
-                                    state: {
-                                        id_account: user.id_account,
-                                    },
-                                }}
-                            >
-                                <i className="fas fa-clipboard-list">
-                                    {" "}
-                                    Đang theo dõi
-                                </i>
-                            </ListGroup.Item>
-                            <ListGroup.Item
-                                action
-                                as={Link}
-                                to={`/u/${user.real_name}/following-tags`}
-                            >
-                                <i className="fas fa-tags"> Thẻ theo dõi</i>
-                            </ListGroup.Item>
-                            <hr/>
-                            <ListGroup.Item
-                                action
-                                as={Link}
-                                to={`/u/${user.real_name}/post_0`}
-                            >
-                                <i className="fas fa-book">
-                                    {" "}
-                                    Bài viết riêng tư
-                                </i>
-                            </ListGroup.Item>
-                            <ListGroup.Item
-                                action
-                                as={Link}
-                                to={`/u/${user.real_name}/post_1`}
-                            >
-                                <i className="fas fa-book">
-                                    {" "}
-                                    Bài viết công khai
-                                </i>
-                            </ListGroup.Item>
-                            <ListGroup.Item
-                                action
-                                as={Link}
-                                to={`/u/${user.real_name}/post_2`}
-                            >
-                                <i className="fas fa-book">
-                                    {" "}
-                                    Bài viết ẩn liên kết
-                                </i>
-                            </ListGroup.Item>
-                        </>
-                    ) : (
-                        <></>
-                    )}
-                </ListGroup>
-            </Col> */}
       <Col xl={2} lg={3} md={0} sm={0} className="category">
         <div className="nav">
           <nav className="nav_pc flex-column flex-shrink-0 text-white bg-white">
@@ -338,27 +253,12 @@ const Menu = ({ real_name, id_role }) => {
               ) : (
                 <></>
               )}
-              {/* <hr style={{ backgroundColor: 'black', width: "300px" }} /> */}
             </ul>
-            {/* <hr />
-                        <div class="dropdown">
-                            <a href="/" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
-                                <strong>mdo</strong>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                                <li><a class="dropdown-item" href="/">New project...</a></li>
-                                <li><a class="dropdown-item" href="/">Settings</a></li>
-                                <li><a class="dropdown-item" href="/">Profile</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="/">Sign out</a></li>
-                            </ul>
-                        </div> */}
           </nav>
         </div>
       </Col>
     </>
-  )
-}
+  );
+};
 
-export default Menu
+export default Menu;

@@ -59,16 +59,6 @@ const WatchPost = () => {
     dispatch(fetchMark(post.author.id_account));
   }, [dispatch, post]);
 
-  // const ScrollToTop = () => {
-  //     const { pathname } = useLocation()
-
-  //     useEffect(() => {
-  //         window.scrollTo(0, 0, "smooth")
-  //     }, [pathname])
-
-  //     return null
-  // }
-
   var date = post.post.day_last_modified.split("/");
 
   const showComment = () => {

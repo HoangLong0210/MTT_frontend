@@ -24,7 +24,7 @@ const RegisterForm = () => {
   const onSubmitRegister = async (event) => {
     event.preventDefault();
     if (password !== confirm) {
-      toastError("Password and Confirm password must match");
+      toastError("Mật khẩu và mật khẩu nhập lại không trùng khớp!");
     } else {
       try {
         const register = {

@@ -14,12 +14,12 @@ const UpdateUser = () => {
     selectedFile: null,
   });
   const [formUpdateUser, setUpdateUser] = useState({
-    real_name: location.state.real_name,
-    birth: location.state.birth,
-    gender: location.state.gender,
-    company: location.state.company,
-    phone: location.state.phone,
-    avatar: location.state.avatar,
+    real_name: location.state?.real_name,
+    birth: location.state?.birth,
+    gender: location.state?.gender,
+    company: location.state?.company,
+    phone: location.state?.phone,
+    avatar: location.state?.avatar,
   });
   const { selectedFile } = image;
   const { real_name, birth, company, phone, avatar, gender } = formUpdateUser;
@@ -82,17 +82,11 @@ const UpdateUser = () => {
       } else {
         toastError(updateDataUser.message);
       }
-      // const updateImage = await updateImageUser(fd)
-      // if (updateImage.status === 200) {
-      //     toastSuccess(updateImage.message)
-      // } else {
-      //     toastError(updateImage.message)
-      // }
     } catch (error) {
       console.log(error);
     }
   };
-  // const { real_name, birth, company, phone, avatar } = formUpdateUser
+
   return (
     <>
       <div className="wapper">
@@ -111,11 +105,13 @@ const UpdateUser = () => {
               <div className="box-avatar">
                 <Image
                   src={avatar}
-                  roundedCircle
-                  style={{ width: "8rem", height: "8rem" }}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    borderRadius: "50%",
+                  }}
                   alt="avatar"
                 />
-                {/* <input type="file" style={{ width: "8rem" }} /> */}
               </div>
               <div id="input1">
                 <label htmlFor="updateInfo-input1" className="item-lable">

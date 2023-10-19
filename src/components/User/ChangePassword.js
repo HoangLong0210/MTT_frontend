@@ -20,19 +20,19 @@ const ChangePassword = () => {
     event.preventDefault();
     try {
       if (old_password === "") {
-        toastError("Chưa nhập mật khẩu cũ!");
+        toastError("Vui lòng nhập mật khẩu cũ!");
         return;
       }
       if (new_password === "") {
-        toastError("Chưa nhập mật khẩu mới!");
+        toastError("Mật khẩu mới không được bỏ trống!");
         return;
       }
       if (new_password_confirm === "") {
-        toastError("Chưa nhập mật khẩu xác nhận!");
+        toastError("Vui lòng xác nhận mật khẩu!");
         return;
       }
       if (new_password !== new_password_confirm) {
-        toastError("Mật khẩu xác nhận không khớp!");
+        toastError("Mật khẩu mới và xác nhận mật khẩu không khớp nhau!");
         return;
       }
 
@@ -63,7 +63,16 @@ const ChangePassword = () => {
               className="box-update-info open"
               onSubmit={onSubmitChangePassword}
             >
-              <h2 style={{ top: "20%" }}>Thay đổi mật khẩu</h2>
+              <h2
+                className="letter"
+                style={{
+                  fontSize: "40px",
+                  fontWeight: "700",
+                  marginTop: "80px",
+                }}
+              >
+                Thay đổi mật khẩu
+              </h2>
 
               <div id="input1-changePass">
                 <label htmlFor="updateInfo-input1" className="item-lable">
@@ -73,7 +82,7 @@ const ChangePassword = () => {
                   type="password"
                   className="item-input"
                   id="updateInfo-input1"
-                  placeholder="Mật khẩu cũ"
+                  placeholder="Vui lòng nhập mật khẩu cũ"
                   name="old_password"
                   require="true"
                   value={old_password}
@@ -88,7 +97,7 @@ const ChangePassword = () => {
                   type="password"
                   className="item-input"
                   id="updateInfo-input2"
-                  placeholder="Mật khẩu mới"
+                  placeholder="Vui lòng nhập mật khẩu mới"
                   name="new_password"
                   require="true"
                   value={new_password}
@@ -103,7 +112,7 @@ const ChangePassword = () => {
                   type="password"
                   className="item-input"
                   id="updateInfo-input3"
-                  placeholder="Nhập lại mật khẩu mới"
+                  placeholder="Vui lòng lặp lại mật khẩu mới vừa nhập"
                   name="new_password_confirm"
                   require="true"
                   value={new_password_confirm}

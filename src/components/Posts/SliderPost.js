@@ -28,18 +28,6 @@ const SliderPost = () => {
     dispatch(fetchPostNewest());
   }, [dispatch]);
 
-  // const settings = {
-  //     dots: true,
-  //     infinite: true,
-  //     slidesToShow: 1,
-  //     slidesToScroll: 1,
-  //     autoplay: true,
-  //     speed: 2000,
-  //     autoplaySpeed: 5000,
-  //     cssEase: "linear",
-  // }
-  // const color = ["bg-info", "bg-secondary", "bg-success", "bg-primary"]
-
   const sliders = () => {
     return postNewest.map((post, index) => {
       // const randomColor = color[Math.floor(Math.random() * color.length)]
@@ -68,7 +56,7 @@ const SliderPost = () => {
             >
               See now
             </Button>
-            <div style={{ marginTop: "92px" }}></div>
+            <div style={{ marginTop: "100px" }}></div>
           </Carousel.Caption>
         </Carousel.Item>
       );
