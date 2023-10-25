@@ -19,6 +19,12 @@ const ChangePassword = () => {
   const onSubmitChangePassword = async (event) => {
     event.preventDefault();
     try {
+      let data = {
+        id_account: user.id_account,
+        old_password: old_password,
+        new_password: new_password,
+      };
+      const changePass = await changePassword(data);
       if (old_password === "") {
         toastError("Vui lòng nhập mật khẩu cũ!");
         return;
@@ -36,12 +42,6 @@ const ChangePassword = () => {
         return;
       }
 
-      let data = {
-        id_account: user.id_account,
-        old_password: old_password,
-        new_password: new_password,
-      };
-      const changePass = await changePassword(data);
       if (changePass.status === 200) toastSuccess(changePass.message);
       else toastError(changePass.message);
     } catch (error) {

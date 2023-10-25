@@ -39,7 +39,7 @@ const UserPost = () => {
   const post = useSelector(postUserSelector);
   const { id_account } = useParams();
   const author = useSelector(authorPostSelector);
-  console.log(author);
+  console.log("🚀 ~ file: UserPost.js:42 ~ UserPost ~ author:", author);
 
   const [pageNumber, setPageNumber] = useState(0);
   const todoPerPage = 5;
@@ -87,7 +87,7 @@ const UserPost = () => {
         >
           <Link to={`/authors/${author.id_account}`}>
             <Image
-              src={author.avatar}
+              src={post.author.avatar}
               roundedCircle
               style={{
                 width: "4rem",
@@ -197,22 +197,22 @@ const UserPost = () => {
                   }}
                 >
                   <Image
-                    src={author.avatar}
-                    roundedCircle
+                    src={author[0]?.author?.avatar}
                     style={{
-                      width: "6rem",
-                      height: "6rem",
+                      width: "100px",
+                      height: "100px",
+                      borderRadius: "50%",
                     }}
                   />
                   <Card.Body style={{ padding: "10px" }}>
                     <Card.Title style={{ fontSize: "28px" }}>
-                      {author.real_name}{" "}
+                      {author?.real_name}{" "}
                       <span
                         style={{
                           color: "#2596be",
                         }}
                       >
-                        @{author.account_name}
+                        @{author[0]?.author?.account_name}
                       </span>
                     </Card.Title>
                     <Card.Text className="align-items-center">
@@ -225,7 +225,8 @@ const UserPost = () => {
                           }}
                         >
                           &nbsp;
-                          {author.total_vote_up - author.total_vote_down}
+                          {author[0]?.author?.total_vote_up -
+                            author[0]?.author?.total_vote_down}
                         </i>
                         <i
                           className="fas fa-user-friends"
@@ -235,7 +236,7 @@ const UserPost = () => {
                           }}
                         >
                           &nbsp;
-                          {author.total_follower}
+                          {author[0]?.author?.total_follower}
                         </i>
                         <i
                           className="fas fa-edit"
@@ -245,7 +246,7 @@ const UserPost = () => {
                           }}
                         >
                           &nbsp;
-                          {author.total_post}
+                          {author[0]?.author?.total_post}
                         </i>
                       </span>
                       {author.id_account !== user.id_account ? (
@@ -254,7 +255,9 @@ const UserPost = () => {
                           style={{
                             width: "auto",
                           }}
-                          onClick={() => changeFollow(author.id_account)}
+                          onClick={() =>
+                            changeFollow(author[0]?.author?.id_account)
+                          }
                         >
                           <i
                             className="fas fa-rss-square"
@@ -263,7 +266,7 @@ const UserPost = () => {
                             }}
                           >
                             &nbsp;
-                            {author.status === true
+                            {author[0]?.author?.status === true
                               ? "Đang theo dõi"
                               : " Theo dõi"}
                           </i>
@@ -275,7 +278,7 @@ const UserPost = () => {
                   </Card.Body>
                 </Card>
                 {displayTodo}
-                {author.total_post > 0 ? (
+                {author[0]?.author?.total_post > 0 ? (
                   <div className="list-page">
                     <ReactPaginate
                       previousLabel={<i className="fa fa-chevron-left "></i>}
@@ -313,9 +316,19 @@ const UserPost = () => {
                 >
                   <h2
                     className="title-information"
-                    style={{ color: "#084298" }}
+                    style={{
+                      fontSize: "24px",
+                      fontWeight: "500",
+                      color: "#0d6efd",
+                    }}
                   >
-                    <b>Thông tin: {author.real_name}</b>
+                    Thông tin:
+                    <b
+                      className="letter"
+                      style={{ fontSize: "28px", fontWeight: "700" }}
+                    >
+                      {author[0]?.author?.real_name}
+                    </b>
                   </h2>
                   <ListGroup className="info-posts">
                     <Row>
@@ -330,7 +343,7 @@ const UserPost = () => {
                             &nbsp;
                             <div>
                               <h6>Số bài viết</h6>
-                              <p>{author.total_post}</p>
+                              <p>{author[0]?.author?.total_post}</p>
                             </div>
                           </div>
                         </ListGroup.Item>
@@ -339,14 +352,14 @@ const UserPost = () => {
                         <ListGroup.Item
                           action
                           as={Link}
-                          to={`/authors/${author.id_account}`}
+                          to={`/authors/${author[0]?.author?.id_account}`}
                         >
                           <div className="d-flex align-items-center">
                             <img src={img1} alt="img1" />
                             &nbsp;
                             <div>
                               <h6>Tổng số lượt xem bài viết</h6>
-                              <p>{author.total_view}</p>
+                              <p>{author[0]?.author?.total_view}</p>
                             </div>
                           </div>
                         </ListGroup.Item>
@@ -359,10 +372,10 @@ const UserPost = () => {
                             <div>
                               <h6>Reputations</h6>
                               <p>
-                                {author.total_vote_up
-                                  ? author.total_vote_up -
-                                    author.total_vote_down
-                                  : author.total_vote_up}
+                                {author[0]?.author?.total_vote_up
+                                  ? author[0]?.author?.total_vote_up -
+                                    author[0]?.author?.total_vote_down
+                                  : author[0]?.author?.total_vote_up}
                               </p>
                             </div>
                           </div>
@@ -375,7 +388,7 @@ const UserPost = () => {
                             &nbsp;
                             <div>
                               <h6>Các thẻ theo dõi</h6>
-                              <p>{author.total_tag_follow}</p>
+                              <p>{author[0]?.author?.total_tag_follow}</p>
                             </div>
                           </div>
                         </ListGroup.Item>
@@ -387,7 +400,7 @@ const UserPost = () => {
                             &nbsp;
                             <div>
                               <h6>Đang theo dõi các người dùng</h6>
-                              <p>{author.total_following}</p>
+                              <p>{author[0]?.author?.total_following}</p>
                             </div>
                           </div>
                         </ListGroup.Item>
@@ -399,7 +412,7 @@ const UserPost = () => {
                             &nbsp;
                             <div>
                               <h6>Các người dùng đang theo dõi</h6>
-                              <p>{author.total_follower}</p>
+                              <p>{author[0]?.author?.total_follower}</p>
                             </div>
                           </div>
                         </ListGroup.Item>

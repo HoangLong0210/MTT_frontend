@@ -42,6 +42,7 @@ const PostNews = () => {
   const displayTodo = postNews
     .slice(pagesVisited, pagesVisited + todoPerPage)
     .map((book, index) => {
+      console.log("🚀 ~ file: PostNews.js:45 ~ .map ~ book:", book);
       return (
         <Card
           className="bg-light post-of-bookmark"
@@ -62,7 +63,7 @@ const PostNews = () => {
           <Card.Body>
             <span>
               <Link
-                to="#"
+                to={`/authors/${book.author.id_account}`}
                 style={{
                   color: "#5488c7",
                   fontSize: "18px",

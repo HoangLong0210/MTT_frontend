@@ -1645,6 +1645,15 @@ p {
   height: 50px;
   font-size: 24px;
 }
+.btn-feedback {
+  color: white;
+  background-image: linear-gradient(to right bottom, #2ebac1, #a4d96c);
+  border: none;
+  border-radius: 8px;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+}
 
 .btn-card-post {
   color: #000;

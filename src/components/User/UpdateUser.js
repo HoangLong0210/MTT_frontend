@@ -59,24 +59,18 @@ const UpdateUser = () => {
   const onSubmitUpdateUser = async (event) => {
     event.preventDefault();
     formUpdateUser.gender = frmGender;
-    // const data = {
-    //     real_name,
-    //     birth,
-    //     company,
-    //     phone,
-    //     gender
-    // }
+
     const fd = new FormData();
     fd.append("real_name", real_name);
     fd.append("birth", birth);
     fd.append("company", company);
     fd.append("phone", phone);
     fd.append("gender", gender);
-    fd.append("avatar", selectedFile, selectedFile.name);
+    fd.append("avatar", selectedFile, selectedFile?.name);
 
     try {
-      // setAuthToken(localStorage.getItem(types.LOCAL_STORAGE_TOKEN_NAME))
       const updateDataUser = await updateUser(fd);
+
       if (updateDataUser.status === 200) {
         toastSuccess(updateDataUser.message);
       } else {
