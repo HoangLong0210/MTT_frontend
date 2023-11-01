@@ -41,17 +41,16 @@ const PostNews = () => {
   const pageCount = Math.ceil(postNews.length / todoPerPage);
   const displayTodo = postNews
     .slice(pagesVisited, pagesVisited + todoPerPage)
-    .map((book, index) => {
-      console.log("🚀 ~ file: PostNews.js:45 ~ .map ~ book:", book);
+    .map((post, index) => {
       return (
         <Card
           className="bg-light post-of-bookmark"
           style={{ flexDirection: "row" }}
           key={index}
         >
-          <Link to="#">
+          <Link to={`/authors/${post.author.id_account}`}>
             <Image
-              src={book.author.avatar}
+              src={post.author.avatar}
               roundedCircle
               style={{
                 width: "4rem",
@@ -63,13 +62,13 @@ const PostNews = () => {
           <Card.Body>
             <span>
               <Link
-                to={`/authors/${book.author.id_account}`}
+                to={`/authors/${post.author.id_account}`}
                 style={{
                   color: "#5488c7",
                   fontSize: "18px",
                 }}
               >
-                {book.author.real_name}
+                {post.author.real_name}
               </Link>
               &ensp;
               <i
@@ -77,14 +76,14 @@ const PostNews = () => {
                   fontSize: "16px",
                 }}
               >
-                {book.post.day_created} - {book.post.time_created}
+                {post.post.day_created} - {post.post.time_created}
               </i>
             </span>
             <Card.Title>
-              <Link to={`/p/post/${book.post.id_post}`}>{book.post.title}</Link>
+              <Link to={`/p/post/${post.post.id_post}`}>{post.post.title}</Link>
             </Card.Title>
             <ListGroup horizontal>
-              {book.tags.map((tag, tagIndex) => {
+              {post.tags.map((tag, tagIndex) => {
                 return (
                   <ListGroup.Item
                     key={tagIndex}
@@ -98,25 +97,25 @@ const PostNews = () => {
                 );
               })}
             </ListGroup>
-            <Card.Text>{book.post.content.substring(0, 200) + "..."}</Card.Text>
+            <Card.Text>{post.post.content.substring(0, 200) + "..."}</Card.Text>
             <div className="footer-card">
               <Button variant="none">
-                <i className="fas fa-eye">&nbsp;{book.post.view}</i>
+                <i className="fas fa-eye">&nbsp;{post.post.view}</i>
               </Button>
               <Button variant="none">
                 <i className="fas fa-bookmark">
-                  &nbsp;{book.post.total_bookmark}
+                  &nbsp;{post.post.total_bookmark}
                 </i>
               </Button>
               <Button variant="none">
                 <i className="fas fa-comments">
-                  &nbsp;{book.post.total_comment}
+                  &nbsp;{post.post.total_comment}
                 </i>
               </Button>
               <Button variant="none">
                 <i className="fas fa-sort">
                   &nbsp;
-                  {book.post.total_vote_up - book.post.total_vote_down}
+                  {post.post.total_vote_up - post.post.total_vote_down}
                 </i>
               </Button>
             </div>

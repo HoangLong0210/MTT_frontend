@@ -39,7 +39,6 @@ const UserPost = () => {
   const post = useSelector(postUserSelector);
   const { id_account } = useParams();
   const author = useSelector(authorPostSelector);
-  console.log("🚀 ~ file: UserPost.js:42 ~ UserPost ~ author:", author);
 
   const [pageNumber, setPageNumber] = useState(0);
   const todoPerPage = 5;

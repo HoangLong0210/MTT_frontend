@@ -92,7 +92,6 @@ const ModalTag = ({ modal, setModal, updateTag }) => {
                 name="selectedFile"
                 required={id_tag ? false : true}
                 aria-describedby="title-help"
-                // value={selectedFile}
                 onChange={fileSelectedHandle}
               />
               <br />
