@@ -167,14 +167,7 @@ const WatchPost = () => {
       >
         <i className="fas fa-arrow-up fa-2x"></i>
       </div>
-      {/* <div
-                className="tam1"
-            >
-                <i className="fas fa-arrow-up fa-2x"></i>
-            </div> */}
-      {/* <ScrollToTop /> */}
       <Col xl={1} lg={1} md={0} sm={0} className="vote-post">
-        {/* <Row> */}
         <Card className="card-post" ref={cardPostRef}>
           <Card className="card-post-1">
             <Col className="text-center">
@@ -187,11 +180,7 @@ const WatchPost = () => {
                 <i className="far fa-thumbs-up fa-2x"></i>
               </Button>
             </Col>
-            {/* </Row> */}
-            {/* <Row> */}
             <Col className="text-center vote-mark">{vote_post}</Col>
-            {/* </Row> */}
-            {/* <Row> */}
             <Col className="text-center">
               <Button
                 variant={vote === -1 ? "info" : "none"}
@@ -224,19 +213,15 @@ const WatchPost = () => {
             </Col>
           </Card>
         </Card>
-        {/* </Row> */}
       </Col>
       <Col xl={11} lg={11} md={12} sm={12} className="post-watch">
         <div className="post" ref={postRef}>
-          {/* <div className="header-post"> */}
           <Row>
             <Col xl={6} lg={6} md={6} sm={6}>
               <Card
                 style={{
                   flexDirection: "row",
-                  // width: "50%",
                   border: "0",
-                  // padding: "0",
                   backgroundColor: "#F0F8FF",
                   justifyContent: "center",
                   alignItems: "center",
@@ -288,7 +273,6 @@ const WatchPost = () => {
                           {mark.mark}
                         </i>
                       </Button>
-                      {/* <Button variant="none"><i className="fas fa-user-friends">3k</i></Button> */}
                       <Button variant="none">
                         <i className="fas fa-edit">
                           &nbsp;
@@ -347,16 +331,11 @@ const WatchPost = () => {
               </Card>
             </Col>
             <Col xl={6} lg={6} md={6} sm={6}>
-              {/* <div className="right-header-post"> */}
               <Card
                 className="card-watch-post-right"
                 style={{
-                  // flexDirection: "row",
-                  // width: "50%",
                   border: "0",
-                  // padding: "0",
                   backgroundColor: "#F0F8FF",
-                  // justifyContent: "right",
                   alignItems: "right",
                 }}
               >
@@ -388,58 +367,11 @@ const WatchPost = () => {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              {/* <div>
-                                <i>{`ngày ${date[0]} tháng ${date[1]} năm ${date[2]}`}</i>
-                            </div> */}
-              {/* <div className="post-item-button">
-                                <Button variant="none">
-                                    <i className="fas fa-eye">
-                                        &nbsp;{post.post.view}
-                                    </i>
-                                </Button>
-                                <Button variant="none">
-                                    <i className="fas fa-bookmark">
-                                        &nbsp;{post.post.total_bookmark}
-                                    </i>
-                                </Button>
-                                <Button
-                                    variant="none"
-                                    onClick={showComment}
-                                >
-                                    <i className="fas fa-comments">
-                                        &nbsp;{post.post.total_comment}
-                                    </i>
-                                </Button>
-                            </div> */}
             </Col>
-            {/* </div> */}
           </Row>
-          {/* </div> */}
           <h4 className="mt-4">
             <b>{post.post.title}</b>
           </h4>
-          {/* <ReactMarkdown
-                            children={post.post.content}
-                            components={{
-                                code({ node, inline, className, children, ...props }) {
-                                    const match = /language-(\w+)/.exec(className || '')
-                                    return !inline && match ? (
-                                        <SyntaxHighlighter
-                                            children={String(children).replace(/\n$/, '')}
-                                            style={docco}
-                                            language={match[1]}
-                                            PreTag="div"
-                                            {...props}
-                                        />
-                                    ) : (
-                                        <code className={className} {...props}>
-                                            {children}
-                                        </code>
-                                    )
-                                }
-                            }}
-                        /> */}
-          {/* <span><ReactMarkdown children={post.post.content} /></span> */}
           <MDEditor.Markdown source={post.post.content} />
         </div>
       </Col>

@@ -303,9 +303,7 @@ const UserPost = () => {
                 ) : (
                   <></>
                 )}
-                {/* <br /> */}
               </Col>
-              {/* <InformationPost /> */}
               <>
                 <Col
                   xl={3}
@@ -336,7 +334,7 @@ const UserPost = () => {
                         <ListGroup.Item
                           action
                           as={Link}
-                          to={`/authors/${author.id_account}`}
+                          to={`/authors/${author[0]?.author?.id_account}`}
                         >
                           <div className="d-flex align-items-center">
                             <img src={img3} alt="img1" />
