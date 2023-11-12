@@ -1,75 +1,55 @@
-import React, { useEffect, useState } from "react"
-import ReactPaginate from "react-paginate"
-import { Row, Col, Container } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
+import { Row, Col, Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import {
   authorSelector,
   changeRoleAccount,
   limitedTimeUnlock,
   loadAuthor,
   permanentUnlock,
-} from "../../reducers/Author/author"
-import { loadUser, userSelector } from "../../reducers/User/loginForm"
-import Footer from "../home/Footer"
-import Header from "../home/Header"
-import MenuAdmin from "../home/MenuAdmin"
-import ModalAddUser from "../Modal/ModalAddUser"
-import ModalAdmin from "../Modal/ModalAdmin"
+} from "../../reducers/Author/author";
+import { loadUser, userSelector } from "../../reducers/User/loginForm";
+import Footer from "../home/Footer";
+import Header from "../home/Header";
+import MenuAdmin from "../home/MenuAdmin";
+import ModalAddUser from "../Modal/ModalAddUser";
+import ModalAdmin from "../Modal/ModalAdmin";
 // import { send } from "emailjs-com"
-import { toastError } from "../../Toast/Toast"
-import Tooltip from "react-bootstrap/Tooltip"
-import OverlayTrigger from "react-bootstrap/OverlayTrigger"
+import { toastError } from "../../Toast/Toast";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 const FetchUser = () => {
-  const dispatch = useDispatch()
-  const users = useSelector(authorSelector)
-  const [modal, setModal] = useState(false)
-  const [modalAdd, setModalAdd] = useState(false)
+  const dispatch = useDispatch();
+  const users = useSelector(authorSelector);
+  const [modal, setModal] = useState(false);
+  const [modalAdd, setModalAdd] = useState(false);
   const [getUser, setGetUser] = useState({
     id_account: 0,
     account_name: "",
     email: "",
     id_role: 0,
-  })
-  const userLogin = useSelector(userSelector)
+  });
+  const userLogin = useSelector(userSelector);
 
-  const [pageNumber, setPageNumber] = useState(0)
-  const todoPerPage = 10
-  const pagesVisited = pageNumber * todoPerPage
-
-  useEffect(() => {
-    dispatch(loadUser())
-  }, [dispatch])
+  const [pageNumber, setPageNumber] = useState(0);
+  const todoPerPage = 10;
+  const pagesVisited = pageNumber * todoPerPage;
 
   useEffect(() => {
-    dispatch(loadAuthor())
-  }, [dispatch])
+    dispatch(loadUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(loadAuthor());
+  }, [dispatch]);
 
   const lockAccount = (id_account, account_name, email, real_name, id_role) => {
-    setModal(true)
-    setGetUser({ id_account, account_name, real_name, email, id_role })
-  }
+    setModal(true);
+    setGetUser({ id_account, account_name, real_name, email, id_role });
+  };
 
-  // const sendEmail = (real_name, email) => {
-  //   const emailLock = {
-  //     from_name: "",
-  //     to_name: email,
-  //     real_name,
-  //     reply_to: "",
-  //   }
-  //   send(
-  //     "service_dukxn3m",
-  //     "template_unLock_user",
-  //     emailLock,
-  //     "sGtIKVX-3KqLsed8L"
-  //   )
-  //     .then((response) => {
-  //       console.log("SUCCESS!", response.status, response.text)
-  //     })
-  //     .catch((err) => {
-  //       console.log("FAILED...", err)
-  //     })
-  // }
   const unLockAccount = async (
     id_account,
     real_name,
@@ -78,34 +58,34 @@ const FetchUser = () => {
   ) => {
     try {
       if (account_status === 1) {
-        dispatch(limitedTimeUnlock(id_account))
+        dispatch(limitedTimeUnlock(id_account));
         // sendEmail(real_name, email)
       } else if (account_status === 2) {
         if (userLogin.id_role === 1) {
-          dispatch(permanentUnlock(id_account))
+          dispatch(permanentUnlock(id_account));
           // sendEmail(real_name, email)
         } else {
-          toastError("Bạn không có quyền!")
+          toastError("Bạn không có quyền!");
         }
       }
     } catch (error) {}
-  }
+  };
 
   const changeRole = async (id_account, role) => {
     if (role === "User") {
       const data = {
         id_account,
         id_role: 2,
-      }
-      dispatch(changeRoleAccount(data))
+      };
+      dispatch(changeRoleAccount(data));
     } else {
       const data = {
         id_account,
         id_role: 3,
-      }
-      dispatch(changeRoleAccount(data))
+      };
+      dispatch(changeRoleAccount(data));
     }
-  }
+  };
 
   const showActionButton = (user) => {
     if (user.account_status === 0) {
@@ -133,7 +113,7 @@ const FetchUser = () => {
             <i className="fas fa-lock" />
           </button>
         </OverlayTrigger>
-      )
+      );
     } else {
       return (
         <OverlayTrigger
@@ -145,6 +125,9 @@ const FetchUser = () => {
             className="btn btn-sm btn-success"
             style={{
               margin: "5px",
+              width: "60px",
+              height: "33px",
+              position: "relative",
             }}
             onClick={() =>
               unLockAccount(
@@ -155,14 +138,23 @@ const FetchUser = () => {
               )
             }
           >
-            <i className="fas fa-unlock-alt" />
+            <i
+              className="fas fa-unlock-alt"
+              style={{
+                width: "50px",
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%,-50%)",
+              }}
+            />
           </button>
         </OverlayTrigger>
-      )
+      );
     }
-  }
+  };
 
-  const pageCount = Math.ceil(users.length / todoPerPage)
+  const pageCount = Math.ceil(users.length / todoPerPage);
   const displayTodo = users
     .slice(pagesVisited, pagesVisited + todoPerPage)
     .map((user, index) => {
@@ -179,34 +171,7 @@ const FetchUser = () => {
               ? "Khóa tạm thời"
               : "Khóa vĩnh viễn"}
           </td>
-          {/* <td
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}
-                    >
-                        {showActionButton(user)}
 
-                        <button
-                            className={
-                                user.role === "Admin"
-                                    ? "btn btn-sm btn-danger"
-                                    : user.role === "Moder"
-                                        ? "btn btn-sm btn-warning"
-                                        : "btn btn-sm btn-primary"
-                            }
-                            style={{
-                                margin: "5px",
-                                width: "70px",
-                            }}
-                            onClick={() =>
-                                changeRole(user.id_account, user.role)
-                            }
-                        >
-                            {user.role}
-                        </button>
-                    </td> */}
           <td style={{ textAlign: "center" }}>
             {showActionButton(user)}
             <button
@@ -224,12 +189,12 @@ const FetchUser = () => {
             </button>
           </td>
         </tr>
-      )
-    })
+      );
+    });
 
   const changePage = ({ selected }) => {
-    setPageNumber(selected)
-  }
+    setPageNumber(selected);
+  };
 
   return (
     <>
@@ -318,7 +283,7 @@ const FetchUser = () => {
       <ModalAdmin modal={modal} setModal={setModal} getUser={getUser} />
       <ModalAddUser modalAdd={modalAdd} setModalAdd={setModalAdd} />
     </>
-  )
-}
+  );
+};
 
-export default FetchUser
+export default FetchUser;
