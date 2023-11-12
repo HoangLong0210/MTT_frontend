@@ -66,9 +66,9 @@ const UpdateUser = () => {
     const fd = new FormData();
     fd.append("real_name", real_name);
     fd.append("birth", birth);
-    fd.append("phone", phone);
     fd.append("gender", gender);
     fd.append("email", email);
+    fd.append("phone", phone);
     fd.append("avatar", selectedFile, selectedFile?.name);
 
     try {
