@@ -19,10 +19,13 @@ const UpdateUser = () => {
     gender: location.state?.gender,
     company: location.state?.company,
     phone: location.state?.phone,
+    email: location.state?.email,
     avatar: location.state?.avatar,
   });
+
   const { selectedFile } = image;
-  const { real_name, birth, company, phone, avatar, gender } = formUpdateUser;
+  const { real_name, birth, company, phone, avatar, gender, email } =
+    formUpdateUser;
 
   useEffect(() => {
     return () => {
@@ -50,12 +53,14 @@ const UpdateUser = () => {
     });
 
     const file = event.target.files[0];
+
     file.preview = URL.createObjectURL(file);
     setUpdateUser({
       ...formUpdateUser,
       avatar: file.preview,
     });
   };
+
   const onSubmitUpdateUser = async (event) => {
     event.preventDefault();
     formUpdateUser.gender = frmGender;
@@ -66,7 +71,9 @@ const UpdateUser = () => {
     fd.append("company", company);
     fd.append("phone", phone);
     fd.append("gender", gender);
+    fd.append("email", email);
     fd.append("avatar", selectedFile, selectedFile?.name);
+    // fd.append("avatar", avatar);
 
     try {
       const updateDataUser = await updateUser(fd);
@@ -74,7 +81,7 @@ const UpdateUser = () => {
       if (updateDataUser.status === 200) {
         toastSuccess(updateDataUser.message);
       } else {
-        toastError(updateDataUser.message);
+        toastError(updateDataUser?.message);
       }
     } catch (error) {
       console.log(error);
@@ -95,7 +102,12 @@ const UpdateUser = () => {
               className="box-update-info open"
               onSubmit={onSubmitUpdateUser}
             >
-              <h2>Cập nhật thông tin cá nhân</h2>
+              <h2
+                className="letter"
+                style={{ fontSize: "40px", fontWeight: "700" }}
+              >
+                Cập nhật thông tin cá nhân
+              </h2>
               <div className="box-avatar">
                 <Image
                   src={avatar}
@@ -116,12 +128,13 @@ const UpdateUser = () => {
                   type="text"
                   className="item-input"
                   id="updateInfo-input1"
-                  placeholder="Họ và Tên người dùng"
+                  placeholder="Họ và tên người dùng"
                   name="real_name"
                   value={real_name}
                   onChange={onChangeUpdateUser}
                 />
               </div>
+
               <div id="input2">
                 <label htmlFor="updateInfo-input2" className="item-lable">
                   <i className="fas fa-images fa-lg">&nbsp;</i>
@@ -144,7 +157,7 @@ const UpdateUser = () => {
                   type="text"
                   className="item-input"
                   id="updateInfo-input3"
-                  placeholder="Ngày Sinh: ví dụ 01/01/2021"
+                  placeholder="Ngày Sinh: ví dụ 01/01/2001"
                   name="birth"
                   value={birth}
                   onChange={onChangeUpdateUser}
@@ -158,9 +171,9 @@ const UpdateUser = () => {
                   type="text"
                   className="item-input"
                   id="updateInfo-input6"
-                  placeholder="Công ty"
-                  name="company"
-                  value={company}
+                  placeholder="Email: ví dụ hoanglong123@gmail.com"
+                  name="email"
+                  value={email}
                   onChange={onChangeUpdateUser}
                 />
               </div>
@@ -209,6 +222,7 @@ const UpdateUser = () => {
                 </div>
                 <label htmlFor="Nu">Nữ</label>
               </div>
+
               <button id="sign-in" type="submit">
                 Cập nhật thông tin
               </button>
