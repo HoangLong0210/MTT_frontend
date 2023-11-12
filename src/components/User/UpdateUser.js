@@ -17,15 +17,13 @@ const UpdateUser = () => {
     real_name: location.state?.real_name,
     birth: location.state?.birth,
     gender: location.state?.gender,
-    company: location.state?.company,
-    phone: location.state?.phone,
     email: location.state?.email,
+    phone: location.state?.phone,
     avatar: location.state?.avatar,
   });
 
   const { selectedFile } = image;
-  const { real_name, birth, company, phone, avatar, gender, email } =
-    formUpdateUser;
+  const { real_name, birth, phone, avatar, gender, email } = formUpdateUser;
 
   useEffect(() => {
     return () => {
@@ -68,12 +66,10 @@ const UpdateUser = () => {
     const fd = new FormData();
     fd.append("real_name", real_name);
     fd.append("birth", birth);
-    fd.append("company", company);
     fd.append("phone", phone);
     fd.append("gender", gender);
     fd.append("email", email);
     fd.append("avatar", selectedFile, selectedFile?.name);
-    // fd.append("avatar", avatar);
 
     try {
       const updateDataUser = await updateUser(fd);
