@@ -38,6 +38,16 @@ const ForgotPassword = () => {
     <>
       <div className="landing">
         <div className="dark-overlay">
+          <div className="landing-container">
+            <Link to="/">
+              <img
+                srcSet="/logo.png 2x"
+                alt="monkey-blogging"
+                className="logo"
+              />
+            </Link>
+            <h1 className="heading">MONKEY NEWS</h1>
+          </div>
           <div className="landing-inner">
             <h1>Chào mừng bạn đến với website ITNEWS</h1>
             <h4>Lấy lại mật khẩu</h4>
